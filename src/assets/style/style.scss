@@ -1,0 +1,16 @@
+// global
+@forward './base/global';
+@forward './base/fonts';
+
+// Mixins
+@forward './utils/sizeFonts';
+
+// Components
+@forward './components/nav';
+@forward './components/footer';
+
+// Pages
+@forward './pages/home';
+@forward './pages/programm';
+@forward './pages/artistes';
+@forward './pages/contact';

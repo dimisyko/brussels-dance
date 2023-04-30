@@ -1,0 +1,295 @@
+@use '../utils/mixins' as *;
+@use '../utils/colors' as *;
+.home {
+	width: 90%;
+	margin: 0 auto;
+	padding-top: 10em;
+	@include phone {
+		padding-top: 12em;
+	}
+	@include tablet {
+		width: 98%;
+	}
+	&__wrapper-imgs {
+		@include tablet {
+			margin-top: -2.5rem;
+			display: flex;
+			justify-content: space-between;
+		}
+	}
+	&__img {
+		margin-top: 2rem;
+		border-radius: 15px;
+		@include tablet {
+			width: 49.5%;
+			height: 90vh;
+			margin-top: 0;
+		}
+	}
+	&__title {
+		color: $colorTitle;
+		text-align: center;
+		@include tablet {
+			font-size: 24.5vw;
+		}
+	}
+}
+.about {
+	&__left {
+		margin-bottom: 3rem;
+		@include tablet {
+			width: 50%;
+			margin-bottom: 0;
+		}
+	}
+	&__btn-play {
+		@include centerAbs(absolute, 50%, 50%, -50%, -50%);
+		width: 4.5rem;
+		height: 4.5rem;
+		transition: opacity 0.7s;
+		background-color: black;
+		border-radius: 50vw;
+		svg {
+			@include centerAbs(absolute, 50%, 50%, -50%, -50%);
+			width: 1.5rem;
+			height: 1.5rem;
+		}
+	}
+	&__wrapper-video {
+		position: relative;
+		width: 90%;
+		height: 75vw;
+		border-radius: 15px;
+		z-index: 1;
+		cursor: pointer;
+		@include tablet {
+			height: 26vw;
+			object-fit: cover;
+		}
+		.video {
+			position: absolute;
+			bottom: 0;
+			width: 100%;
+			background-color: white;
+			padding: 2.2% 0;
+			z-index: 1;
+			opacity: 0;
+			visibility: hidden;
+			transition: 0.5s;
+			@include phone {
+				padding: 1.1% 0;
+			}
+			.btn-play {
+				&[data-play=true]{
+					svg{
+						&:first-child{
+							display: none
+						}
+						&:nth-child(2){
+							display: block
+						}
+					}
+				}
+				width: 2.2rem;
+				height: 2.2rem;
+				background-color: black;
+				border-radius: 50vw;
+				@extend %centerFlex;
+				&__wrapper {
+					width: 30%;
+					svg {
+						&:nth-child(2){
+							display: none;
+						}
+				}
+				}
+			}
+			&__wrapper {
+				@extend %flex_between;
+			}
+			&__indicator-parent {
+				position: relative;
+				height: 4px;
+				background-color: #ff800179;
+				width: 55%;
+				@include phone {
+					width: 75%;
+				}
+			}
+			&__indicator-child {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background-color: $colorTitle;
+				transform-origin: left;
+			}
+		}
+	}
+	&__btn-close {
+		position: absolute;
+		top: 10%;
+		right: 8vw;
+		color: white;
+		@include lineAfter(1px, 0.5s, white, 1, 0, left, right);
+	}
+	&__bg {
+		position: fixed;
+		top: 0;
+		left: 0;
+		height: 100vh;
+		width: 100%;
+		transform-origin: top;
+		transform: scaleY(0);
+		background-color: $colorTitle;
+	}
+	&__edition {
+		@include tablet {
+			display: flex;
+			justify-content: space-between;
+		}
+	}
+	&__title {
+		margin-bottom: 2rem;
+		color: $colorTitle;
+	}
+	&__container-paragraph {
+		@include tablet {
+			width: 47%;
+		}
+	}
+	&__paragraph {
+		&:last-child {
+			margin-top: 2rem;
+		}
+		@include tablet {
+			&:last-child {
+				columns: 2;
+				column-gap: 2.5rem;
+			}
+		}
+	}
+}
+.programm {
+	&__link {
+		position: relative;
+		width: fit-content;
+		@include lineAfter(1px, 0.5s, white, 1, 0, left, right);
+	}
+	&__container {
+		background-color: $colorTitle;
+		@include tablet {
+			display: flex;
+			height: 100vh;
+		}
+	}
+	&__title,
+	&__paragraph {
+		margin-bottom: 2rem;
+	}
+	&__txt {
+		color: white;
+		width: 90%;
+		margin: auto;
+		padding: 4rem 0;
+		@include phone {
+			padding: 6rem 0;
+		}
+		@include tablet {
+			width: 40%;
+			padding: 0;
+		}
+	}
+	&__img {
+		height: 60vh;
+		@include phone {
+			height: 50vh;
+		}
+		@include tablet {
+			width: 48%;
+			height: 100%;
+		}
+	}
+}
+.artistes {
+	&__item {
+		margin: 3rem 0;
+		h2 {
+			margin-bottom: 1.2rem;
+			color: $colorTitle;
+		}
+		a {
+			position: relative;
+			color: black;
+			width: fit-content;
+			@include lineAfter(1px, 0.5s, black, 1, 0, left, right);
+		}
+	}
+	&__img {
+		border-radius: 15px;
+	}
+	@include tablet {
+		&__grid {
+			display: grid;
+			grid-template-columns: repeat(6, 1fr);
+			grid-template-rows: repeat(6, 1fr);
+			gap: 20px;
+		}
+		&__item {
+			margin: 0;
+			&:first-child {
+				grid-area: 1/3/3/1;
+			}
+			&:nth-child(2) {
+				grid-area: 1/7/3/5;
+			}
+			&:nth-child(3) {
+				grid-area: 3/3/5/1;
+			}
+			&:nth-child(4) {
+				grid-area: 7/5/5/3;
+			}
+			&:nth-child(5) {
+				grid-area: 3/5/5/7;
+			}
+		}
+	}
+}
+.partners {
+	&__container {
+		display: flex;
+		overflow-x: hidden;
+		padding: 3rem 0 5rem 0;
+		width: 100vw;
+		@include tablet {
+			padding: 5rem 0 8rem 0;
+		}
+	}
+	&__wrapper {
+		display: flex;
+		border-top: 1px solid $colorTitle;
+		border-bottom: 1px solid $colorTitle;
+	}
+	&__list {
+		display: flex;
+		align-items: center;
+		border-right: 1px solid $colorTitle;
+		padding: 3rem;
+		@include tablet {
+			padding: 3vw;
+		}
+	}
+	&__title {
+		color: $colorTitle;
+	}
+	&__item {
+		width: 20vw;
+		@include phone {
+			width: 15vw;
+		}
+		@include tablet {
+			width: 8vw;
+		}
+	}
+}

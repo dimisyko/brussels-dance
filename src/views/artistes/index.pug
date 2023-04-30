@@ -1,0 +1,27 @@
+-const title = "Artistes"
+-const places = [{name :"Ayelen Parolin", portrait : "portrait1.webp", site : "www.ayelenparolin.be"}, {name :"Vera Tussing", portrait : "portrait2.webp", site : "www.veratussing.com"}, {name :"Thierry Smits", portrait : "portrait3.webp", site : "www.thor.be"}, {name :"Julien Carlier", portrait : "portrait4.webp", site : "www.juliencarlier.be"}]
+include ../../components/head.pug
+    include ../../components/nav.pug
+    main.app#app
+        .content
+            .bg-black
+            section.artistes-page.mg-top
+             h1.artistes-page__title.arrow-title Les artistes
+             .artistes-page__slider
+              .artistes-page__container
+                each item in places
+                 .artistes-page__item
+                   .artistes-page__wrapper 
+                    figure.artistes-page__img 
+                      img(src=require(`../../assets/img/${item.portrait}`), alt=item.name)
+                    h3=item.name
+                    a.artistes-page__site(href=`http://${item.site}`, target="_blank", rel="noopener noreferrer")=item.site
+              .info
+                p Clique et glisse
+                .nbr  
+                   .nbr-container 
+                     .nbr-wrapper
+                      -for(let i = 0; i<places.length; i++)
+                       span.nbr-index=(i + 1)
+                   .nbr-length="/"+places.length
+    include ../../components/footer.pug

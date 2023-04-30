@@ -1,0 +1,59 @@
+-const title = "Programme"
+include ../../components/head.pug
+    include ../../components/nav.pug
+    main.app#app
+        .content
+          .bg-black
+          section.programm-page.mg-top
+            h1.programm-page__title.arrow-title Programme 2022
+            include ../../components/programm.pug
+            
+            +programm({
+                  programm :[
+                  {
+                     img : "programme1.webp",
+                     alt : "Ayelen Parolin",
+                     title : "Ayelen Parolin",
+                     txt : "D’inspiration dada et au-delà de toute convention, la nouvelle création d’Ayelen Parolin fait le pied de nez au sérieux de notre temps. La chorégraphe lance trois interprètes dans un étonnant jeu de rythme et de construction, à la fois répétitif et toujours mouvant, sans cesse redistribué, restructuré, ré-envisagé.",
+                     place : "Les Brigittines",
+                     datetime : "2022-03-12",
+                     date : "12-03-2022"
+                  },
+                  {
+                     img : "programme2.webp",
+                     alt : "Golem",
+                     title : "Golem",
+                     txt : "Le Golem, choisi pour sa symbolique du double, est une créature d’argile sans âme et muette, façonnée à l’image de son créateur pour le défendre. Vu comme une projection que l’on crée pour se comprendre et comprendre l’autre, le Golem du chorégraphe Julien Carlier et du sculpteur Mike Sprogis propose une fusion de leurs deux gestuelles.",
+                     place : "Les Brigittines",
+                     datetime : "2022-03-10",
+                     date : "10-03-2022"
+                  },
+                  {
+                     img : "programme3.webp",
+                     alt : "Para Bellum",
+                     title : "Para Bellum",
+                     txt : "Sur un plateau parsemé d’une douce matière noire, Erika Zueneli engage un corps aux aguets, traversé par de multiples désirs et tensions. Instabilité et fragilité habitent un être vibrant, résolument soumis à des vents contraires, en réélaboration quasi permanente.",
+                     place : "Les Brigittines",
+                     datetime : "2022-03-10",
+                     date : "10-03-2022"
+                  },
+                  {
+                     img : "programme4.webp",
+                     alt : "Petite ronde",
+                     title : "Petite ronde",
+                     txt : "Quatre danseurs explorent le plaisir d’allier les émotions et les rythmes, dessiner farandoles et cercles qui se déploient dans l’espaceLes pieds dans l’herbe, sur une place publique, sur une scène ouverte ou dans la rue, la ronde s’agrandit pour se joindre au public.",
+                     place : "Théâtre Mercelis",
+                     datetime : "2022-03-13",
+                     date : "13-03-2022"
+                  },
+                  {
+                     img : "programme5.webp",
+                     alt : "Protéiforme + B++++",
+                     title : "Protéiforme + B++++",
+                     txt : "Protéiforme - Tout public - 40 minutes Qu'est-ce qu'un bon mouvement ? Qu’est-ce qui est beau ? Qu'est-ce qui est laid ? Et si la laideur n'était pas l'envers de la beauté, mais une de ses catégories ? Le beau resterait-t-il une finalité ? Protéiforme interroge l'expression de la laideur, davantage liée à l'individualité, en contre point avec l'idée de la beauté, qui serait par essence même, la quête d’un idéal.",
+                     place : "Le Jacques Franck",
+                     datetime : "2022-03-05",
+                     date : "05-03-2022"
+                  }
+            ]})
+    include ../../components/footer.pug

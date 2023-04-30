@@ -1,0 +1,14 @@
+
+mixin programm({programm})
+    each item in programm 
+        article.programm-page__item
+            .programm-page__item-wrapper
+                figure.programm-page__img.hide
+                    img(src=require(`../../assets/img/${item.img}`), alt=item.alt)
+                .programm-page__info
+                  .programm-page__info-head
+                    h2=item.title
+                    p=item.txt
+                  .programm-page__info-footer
+                    h4=item.place 
+                    time(datetime=item.datetime)=item.date

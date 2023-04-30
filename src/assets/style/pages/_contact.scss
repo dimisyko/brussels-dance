@@ -1,0 +1,101 @@
+@use '../utils/mixins' as *;
+@use '../utils/colors' as *;
+#black{
+    background-color: black;
+}
+.contact{
+    &__form-container{
+        height: 100vh;
+        margin: 0 auto;
+        width: 90%;
+        @include tablet{
+            width: 65%;
+        }
+    }
+    &__title{
+        position: relative;
+        color: white;
+        width: fit-content;
+        @include tablet{
+			@include arrowTitle(url(../svg/arrow-white.svg));
+          }
+    }
+    &__form{
+        height: 100%;
+        padding: 4rem 0;
+        transition: opacity 0.2s 1.2s;
+        .center-input{
+           position: absolute;
+           top: 25%;
+           width: 100%;
+           opacity: 0;
+           pointer-events: none;
+           transition: opacity 0.5s;
+           &.active{
+            opacity: 1;
+            pointer-events: auto;
+            transition-delay: 0.4s;
+           }
+        }
+        label{
+            color: white;
+            margin-bottom: 2.2rem;
+            font-weight: bolder;
+        }
+        input{
+            padding: 0.8rem 0;
+        }
+        .form__error{
+            width: 50%;
+        }
+        input, textarea{
+            color: white;
+            border-bottom: 1px solid white;
+            width: 100%;
+            font-size: 1.3rem;
+            margin-bottom: 3.5rem;
+            @include phone{
+                font-size: 2rem;
+            }
+        }
+    }
+    &__form-head, &__btn-next, &__btn-submit, &__btn-previous{
+        color: white;
+    }
+    &__form-head{
+        display: flex;
+        justify-content: space-between;
+        .inline{
+            display: inline-block;
+        }
+    }
+    &__btn-next{
+        position: relative;
+        @include lineAfter(1px, 0.5s, white, 1, 0, left, right);
+    }
+    &__message-bottom{
+        @extend %flex_between
+    }
+    &__btn-submit{
+        position: relative;
+        @include lineAfter(1px, 0.5s, white, 1, 0, left, right);
+    }
+     &__btn-previous{
+        position: relative;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.5s;
+        @include lineAfter(1px, 0.5s, white, 1, 0, left, right);
+        &.btn-prev{
+            opacity: 1;
+            pointer-events: all; 
+        }
+       }
+    &__wrapper{
+        position: relative;
+        height: 100%;
+        @include tablet{
+            height: 80%;   
+        }
+    }
+}

@@ -1,0 +1,85 @@
+@use '../utils/mixins' as *;
+@use '../utils/colors' as *;
+.artistes-page {
+    &__title{
+		position: relative;
+		color: $colorTitle;
+        @include tablet{
+			@include arrowTitle(url(../svg/arrow.svg));
+          }
+    }
+	&__slider {
+		position: relative;
+		height: 80vh;
+		width: 100vw;
+		overflow: hidden;
+        margin: -2rem 0 3rem 0;
+        @include tablet{
+            height: 95vh;  
+        }
+	}
+		&__container {
+			display: flex;
+			height: 100%;
+			transition: 1.2s cubic-bezier(0.3, -0.01, 0.09, 1.01);
+			@include tablet {
+				padding-left: 25vw;
+			}
+		}
+		&__wrapper {
+			text-align: center;
+			transform: scale(1);
+			opacity: 0.5;
+			transition: 1.2s cubic-bezier(0.3, -0.01, 0.09, 1.01);
+			&.active {
+				transform: scale(1.8);
+				opacity: 1;
+			}
+			h3{
+				color: $colorTitle;
+			}
+		}
+		&__site {
+			position: relative;
+			width: fit-content;
+			margin: auto;
+			color: black;
+            font-size: 0.9rem;
+			@include lineAfter(0.5px, 0.5s, black, 0, 1, right, left);
+		}
+		&__img {
+			width: 40%;
+			margin: 0 auto 0.8rem auto;
+			@include tablet{
+				width: 45%;
+			}
+		}
+		&__item {
+			@extend %centerFlex;
+			width: 100%;
+			flex-shrink: 0;
+			white-space: nowrap;
+			@include tablet {
+				width: 50vw;
+			}
+		}
+		.info {
+			position: absolute;
+			top: 90%;
+			left: 5%;
+			@extend %flex_between;
+			width: 90%;
+			.nbr {
+				font-family: 'NeueMontreal';
+				font-size: 1.5rem;
+				display: flex;
+				.nbr-container {
+					max-height: 2rem;
+					overflow: hidden;
+					.nbr-wrapper {
+						transition: 0.7s;
+					}
+				}
+			}
+		}
+}

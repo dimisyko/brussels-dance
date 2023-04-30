@@ -1,0 +1,78 @@
+@use '../utils/mixins' as *;
+@use '../utils/colors' as *;
+.programm-page{
+    &__title{
+      color: $colorTitle;
+    }
+    &__item{
+        background-color: rgb(254, 248, 230);
+        margin-bottom: 2rem;
+        @include tablet{
+            height: 250vh;
+            margin-bottom: -150vh;
+            will-change: transform, opacity;
+            &:last-child{
+                margin-bottom: 0; 
+                height: 100%
+            }
+        }
+        &:nth-child(odd){
+            .programm-page__item-wrapper{
+                flex-direction: row-reverse;
+            }  
+        }
+    } 
+   &__info{
+    h2{
+        color: $colorTitle;
+        margin: 2rem 0;
+        @include tablet{
+            margin: 0 0 1.2rem 0;
+        }
+    }
+    @include tablet{
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        width: 45%;
+        height: 80%;
+    }
+   }
+   &__info-footer{
+    margin-top: 2rem;
+    @extend %flex_between;
+    h4{
+        margin: 0;
+        font-weight: lighter;
+    }
+    @include tablet{
+        margin-top: 0
+    }
+   }
+   &__item-wrapper{
+    padding: 4rem 5%;
+    @include tablet{
+        position: sticky;
+        top: 0;
+        display: flex;
+        justify-content: space-between;
+        height: 100vh;
+    }
+   }
+    &__img{
+        height: 40%;
+        border-radius: 15px;
+        @include tablet{
+            width: 45vw;
+            height: 80%;
+        }
+    }
+    &__title{
+        position: relative;
+        margin-bottom: 1.8rem;
+          @include tablet{
+            @include arrowTitle(url(../svg/arrow.svg));
+            font-size: 13vw;
+          }
+    }
+}

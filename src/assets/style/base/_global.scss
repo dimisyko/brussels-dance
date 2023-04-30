@@ -1,0 +1,135 @@
+ @use "../utils/mixins" as *;
+ ::selection{
+    background-color: #fff5db;
+  }
+  ::placeholder {
+    color: white;
+    opacity: 0.6;
+  }
+    html, body, nav, header, footer, span,
+    h1, h2, h3, p,
+    a, img,
+    ul, li,
+    table, form, label, input, textarea, select, button, figure, fieldset {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    .content{
+      background-color:rgb(254, 248, 230);
+      background-image: url(../img/bg.png);
+    }
+    .bg-black{
+      position: fixed;
+      top: 0;
+      height: 100%;
+      width: 100%;
+      opacity: 0;
+      z-index: -1;
+      background-color: #000000d8;
+    }
+    .sect-mg-top{
+      margin-top: 8rem;
+      @include phone{
+          margin-top: 10rem;
+      }
+      @include tablet{
+          margin-top: 18%;
+      }
+    }
+    .mg-top{
+      padding-top: 10em;
+      .arrow-title{
+        width: fit-content;
+        margin-left: 5%;
+      }
+      @include phone{
+        padding-top: 12em;
+      }
+    }
+    body{
+      background-color:#ff7f01;
+      overflow-y: scroll;
+      &.openVideo{
+        overflow-y: hidden;
+        .video{
+          opacity: 1;
+          visibility: visible;
+        }
+        header{
+          transform: translateY(-100%);
+        }
+        .about__btn-play{
+          opacity: 0;
+        }
+        .about__bg{
+          transform:scaleY(1)
+        }
+    }
+      &.open {
+        overflow-y: hidden;
+        .menu__container {
+          .menu__nav {
+            opacity: 1;
+            pointer-events: all;
+          }
+          .menu-btn {
+            opacity: 1;
+            .line {
+              &:first-child {
+                top: 50%;
+                transform: translateY(-50%) rotate(45deg);
+              }
+              &:nth-child(2) {
+                opacity: 0;
+              }
+              &:last-child {
+                bottom: 50%;
+                transform: translateY(50%) rotate(-45deg);
+              }
+            }
+          }
+        }
+      }
+    }
+    ul, li {
+      list-style: none;
+    }
+    button, fieldset, input, textarea{
+      background-color: transparent;
+      border: none;
+      outline: none;
+    }
+    button:hover {
+      cursor: pointer;
+    }
+    a {
+      text-decoration: none;
+    }
+    .split-js-parent, .split-js-child{
+      display: inline-block;
+    }
+    .split-js-child{
+      transform: translate(0, 105%);
+    }
+    img, picture, span, label, svg, a {
+      display: block
+    }
+    .shrink{
+      flex-shrink: 0;
+    }
+    img, svg, video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  .hide{
+    overflow: hidden;
+  }
+  .overflow-x{
+    overflow-x: hidden;
+  }
+  .w-90{
+    width: 90%;
+    margin: 0 auto;
+  }

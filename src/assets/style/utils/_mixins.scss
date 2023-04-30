@@ -1,0 +1,69 @@
+%centerFlex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+%flex_between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+@mixin arrowTitle($svg){
+  &::after{
+    @include after($svg, 0, 100%);
+    transform: translateX(150%);
+    width: 50px;
+}
+}
+@mixin centerAbs($position, $top, $left, $x, $y) {
+  position: $position;
+  top: $top;
+  left: $left;
+  transform: translate3d($x, $y, 0);
+}
+@mixin after($content, $top, $left) {
+  content: $content;
+  position: absolute;
+  top: $top;
+  left: $left;
+}
+@mixin lineAfter($h, $speed, $color, $value, $valueHover, $direction, $directionHover){
+  &::before{
+    @include after("", 100%, 0);
+  background-color: $color;
+  width: 100%;
+  height: $h;
+  transform-origin: $direction;
+  transform: scaleX($value);
+  transition: transform $speed
+  }
+  &:hover{
+    &::before{
+      transform-origin: $directionHover;
+      transform: scaleX($valueHover);
+    }
+  }
+}
+@mixin phone {
+  @media (min-width: 768px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: 992px){
+    @content;
+  }
+}
+
+@mixin laptop {
+  @media (min-width: 1200px) {
+    @content;
+  }
+}
+
+@mixin hoverDevice {
+  @media (hover : hover) {
+    @content;
+  }
+}

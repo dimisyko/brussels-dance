@@ -1,0 +1,70 @@
+@use './mixins' as *;
+h1, h2, h3{
+  font-family: "Mongoose";
+  font-weight: lighter;
+  text-transform: uppercase;
+  }
+a, p, time, .nbr, label, textarea, .contact__btn-next, .contact__btn-submit, .contact__btn-previous, .contact__form-nbr, h4,h5,h6, .video__current-time{
+  font-family: "NeueMontreal";
+}
+h1{
+  line-height: 0.85;
+  font-size: 6.5rem;
+  @include phone{
+    font-size: 10rem;
+  }
+}
+h2{
+  font-size: 4.8rem;
+  line-height: 0.95;
+  @include phone{
+    font-size: 5.7rem;
+  }
+  @include tablet{
+    font-size: clamp(5.7rem, 7vw, 9rem)
+  }
+}
+h3{
+  font-size: 2.5rem;
+  line-height: 0.95;
+  @include phone{
+    font-size: 4rem;
+  }
+  @include tablet{
+    font-size: clamp(4rem, 4vw, 5rem)
+  }
+}
+h4{
+  font-size: 1.5rem;
+  @include phone{
+    font-size: 1.6rem;
+  }
+  @include tablet{
+    font-size: clamp(1.6rem, 1.7vw, 2rem)
+  }
+}
+a{
+  @include tablet{
+    font-size: 1rem;
+  }
+  @include laptop {
+    font-size: clamp(1rem, 1.15vw, 1.4rem)
+  }
+}
+p, time, label, .contact__btn-next, .contact__btn-submit, .contact__btn-previous, .contact__form-nbr, .about__btn-close{
+  line-height: 1.5;
+  font-size: 1.1rem; 
+  @include laptop{
+    font-size: clamp(1.1rem, 1.3vw, 1.4rem)
+  }
+}
+.link{
+  font-size: 1.1rem;
+  color: white;
+  @include tablet{
+    font-size: 1rem;
+  }
+  @include laptop {
+    font-size: clamp(1rem, 1.2vw, 1.35rem)
+  }
+}
