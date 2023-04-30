@@ -13,7 +13,6 @@ class appGlobal {
             line :  this.menu.querySelector('.menu-line'),
             btnMenu : document.querySelector('.menu-btn')
         }
-        this.footer = document.querySelector('.footer')
         this.onLoad()
         this.eventListener()
     }
