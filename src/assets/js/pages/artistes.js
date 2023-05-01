@@ -34,6 +34,9 @@ export default class places extends splitWord{
         this.anim()
         this.init.posX = moveX
     }
+    get length(){
+       return this.items.length - 1
+    }
     dragUp(){
         this.run = false
         this.el.style.cursor = "auto"
@@ -48,7 +51,7 @@ export default class places extends splitWord{
     anim(){
         if(this.state){
             this.child[this.init.index].classList.remove('active')
-            if(this.moveEl > 10 && this.init.index < this.items.length - 1 ){
+            if(this.moveEl > 10 && this.init.index < this.length ){
                 this.moveContainer(this.init.index++, this.init.increVW+=this.items[0].offsetWidth, this.init.increNbr+=this.nbr.firstElementChild.offsetHeight)
             }else if(this.moveEl < -10 && this.init.index > 0 ){
                 this.moveContainer(this.init.index--, this.init.increVW-=this.items[0].offsetWidth, this.init.increNbr-=this.nbr.firstElementChild.offsetHeight)

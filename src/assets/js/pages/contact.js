@@ -21,10 +21,16 @@ export default class contact extends splitWord {
         this.event()
         this.init()
     }
+    get length(){
+        return {
+            container : this.formChild.containerInput.length,
+            inputs : this.formChild.inputs.length - 1
+        }
+    }
     init() {
         this.formChild.containerInput[0].classList.add('active')
         this.formChild.nbrIndex.textContent = "0" + (this.index + 1) + "/"
-        this.formChild.nbrLength.textContent = "0" + this.formChild.containerInput.length
+        this.formChild.nbrLength.textContent = "0" + this.length.container
     }
     message(err, color) {
         const parent = this.formChild.inputs[this.index].parentElement
@@ -45,7 +51,7 @@ export default class contact extends splitWord {
     }
     navigate(direction){
         this.formChild.containerInput[this.index].classList.remove('active')
-        direction == "next" && this.index < this.formChild.containerInput.length - 1 ? (this.incrementation(this.index++, this.index), this.formChild.btnPrev.classList.add('btn-prev')) : this.incrementation(this.index--, this.index)
+        direction == "next" && this.index < this.length.container - 1 ? (this.incrementation(this.index++, this.index), this.formChild.btnPrev.classList.add('btn-prev')) : this.incrementation(this.index--, this.index)
         if(this.index == 0) this.formChild.btnPrev.classList.remove('btn-prev')
         this.formChild.containerInput[this.index].classList.add('active')
     }
@@ -62,7 +68,7 @@ export default class contact extends splitWord {
     }
     submitForm(e) {
         e.preventDefault()
-        if (this.index == this.formChild.inputs.length - 1 && this.formChild.inputs[this.index].value.trim().length >= 5) {
+        if (this.index == this.length.inputs && this.formChild.inputs[this.index].value.trim().length >= 5) {
             this.message(`Merci ${first_name.value.charAt(0).toUpperCase() + first_name.value.substring(1)} pour votre message !`, "#ff7f01")
             this.form.style.opacity = 0
             setTimeout(() => this.form.remove(), 1500)

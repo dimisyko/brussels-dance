@@ -6,6 +6,7 @@ import preloader from './tlTransitions/preloader.js';
 
 class appGlobal {
     constructor() {
+        //this.removeSlashUrl()
         loadFunction()
         this.menu = document.querySelector('.menu__wrapper')
         this.menuChild = {
@@ -15,6 +16,14 @@ class appGlobal {
         }
         this.onLoad()
         this.eventListener()
+    }
+    get lengthLinks(){
+        return this.menuChild.links.length
+    }
+    removeSlashUrl(){
+        if(window.location.pathname != "/"){
+            window.history.replaceState({}, "", window.location.pathname.substring(0, window.location.pathname.length - 1));
+        }
     }
     toggle(){
         document.body.classList.toggle('open')
@@ -27,7 +36,7 @@ class appGlobal {
         document.body.classList.remove('open')
     }
     currentLink(url) {
-        for (let index = 0; index < this.menuChild.links.length; index++) {
+        for (let index = 0; index < this.lengthLinks; index++) {
             const href = this.menuChild.links[index].getAttribute('href').replace(window.location.origin, "")
             url == href ? this.menuChild.links[index].setAttribute('aria-current', 'active') : this.menuChild.links[index].removeAttribute('aria-current')
             this.menuChild.links[index].addEventListener('mouseover', () => this.offsetEl(this.menuChild.links[index]))
