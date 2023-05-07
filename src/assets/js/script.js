@@ -53,6 +53,11 @@ class appGlobal {
         transitionPage(window.location.pathname)
         this.navigation()
     }
+    onChange(target){
+        window.history.pushState({}, '', target.getAttribute('href'))
+        transitionPage(target.getAttribute('href')) 
+        this.navigation()
+    }
    clk(e) {
         let el = e.target
         while (el && !el.href) {
@@ -66,9 +71,8 @@ class appGlobal {
             return
         }
             e.preventDefault()
-            window.history.pushState({}, '', el.getAttribute('href'))
-            transitionPage(el.getAttribute('href')) 
-            this.navigation()
+            e.stopPropagation()
+            this.onChange(el)
     }
     eventListener() {
         this.menuChild.btnMenu.addEventListener('click', this.toggle.bind(this))
