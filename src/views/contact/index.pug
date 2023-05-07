@@ -15,20 +15,20 @@ include ../../components/head.pug
                            .form-length.inline
                    .contact__wrapper
                      .form__first-name.center-input 
-                       label(for="first_name") Quel est votre nom et prénom ?
-                       input#first_name.input(type="text", placeholder="Nom et prénom" name="first_name")
+                       label(for="first_name") Quel est votre prénom ?
+                       input#first_name.input(type="text", data-input="prénom" placeholder="Dimi" name="first_name")
                        .contact__message-bottom
                           p.form__error
                           button.contact__btn-next(type="button", data-btn="next") Suivant
                      .form__email.center-input
                        label(for="email") Où pouvons-nous vous contacter ?
-                       input#email.input(type="email", placeholder="Email" name="email")
+                       input#email.input(type="email", data-input="email" placeholder="abc@hotmail.com" name="email")
                        .contact__message-bottom
                           p.form__error
                           button.contact__btn-next(type="button", data-btn="next") Suivant
                      .form__message.center-input
                        label(for="message") Quel est votre message ?
-                       textarea#message.input(name="message", placeholder="Message" cols="20", rows="4")
+                       textarea#message.input(name="message", data-input="message" placeholder="Ceci est un message" cols="20", rows="4")
                        .contact__message-bottom
                           p.form__error
                           button.contact__btn-submit(type="submit") Envoyer

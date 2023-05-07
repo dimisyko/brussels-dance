@@ -57,8 +57,9 @@ export default class contact extends splitWord {
     }
     checkInputValue() {
         if (this.formChild.inputs[this.index].value.trim() == "") {
-            this.message("Le champ est vide", "red")
-        } else if (this.formChild.inputs[this.index].value.trim().length < 5) {
+            const inputTxt = this.formChild.inputs[this.index].dataset.input
+            this.message(`Veuillez introduire votre ${inputTxt}`, "red")
+        } else if (this.formChild.inputs[this.index].value.trim().length < 3) {
             this.message("Le texte est trop court", "red")
         } else if (this.formChild.inputs[this.index].parentElement.classList.contains("form__email")) {
             !this.checkRegex(email.value) ? this.message("Ecrivez correctement votre adresse email", "red") : this.succes()
