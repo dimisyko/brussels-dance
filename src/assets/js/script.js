@@ -6,7 +6,6 @@ import preloader from './tlTransitions/preloader.js';
 
 class appGlobal {
     constructor() {
-        //this.removeSlashUrl()
         loadFunction()
         this.menu = document.querySelector('.menu__wrapper')
         this.menuChild = {
@@ -19,11 +18,6 @@ class appGlobal {
     }
     get lengthLinks(){
         return this.menuChild.links.length
-    }
-    removeSlashUrl(){
-        if(window.location.pathname != "/"){
-            window.history.replaceState({}, "", window.location.pathname.substring(0, window.location.pathname.length - 1));
-        }
     }
     toggle(){
         document.body.classList.toggle('open')
