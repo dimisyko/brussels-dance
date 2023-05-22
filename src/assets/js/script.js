@@ -1,12 +1,17 @@
 import '../style/style.scss';
-import loadFunction from "./utils/functionLoad.js"
-import transitionPage from './utils/ajax.js';
 import { fcns } from './utils/functions.js'
 import preloader from './tlTransitions/preloader.js';
+import home from "./pages/home.js";
+import program from "./pages/program.js"
+import artistes from "./pages/artistes.js"
+import contact from "./pages/contact.js"
+import { leavePage, enterPage } from "./tlTransitions/timeLine.js"
+import ajax from './utils/ajax.js';
+
 
 class appGlobal {
     constructor() {
-        loadFunction()
+        this.paths()
         this.menu = document.querySelector('.menu__wrapper')
         this.menuChild = {
             links : [...this.menu.querySelectorAll('.menu__link')],
@@ -18,6 +23,36 @@ class appGlobal {
     }
     get lengthLinks(){
         return this.menuChild.links.length
+    }
+    paths() {
+        this.path = new Map()
+
+        this.path.set('/', home)
+        this.path.set('/programme', program)
+        this.path.set('/artistes', artistes)
+        this.path.set('/contact', contact)
+        this.page = new (this.path.get(window.location.pathname))
+        this.page.run()
+    }
+    async createPage(url) {
+        try {
+            leavePage()
+            const content = app.querySelector('.content')
+            document.documentElement.style = "overflow : hidden; pointer-events : none;"
+            typeof this.page.destroy == "function" && this.page.destroy()
+            const response = await ajax(url)
+            const dom = new DOMParser().parseFromString(response, 'text/html')
+            enterPage(dom.querySelector('.content')).then(() => {
+                content.remove()
+                document.documentElement.removeAttribute('style')
+                window.scrollTo(0, 0)
+            })
+            app.appendChild(dom.querySelector('.content'))
+            document.title = dom.title
+            this.paths()
+        } catch {
+            window.location.reload()
+        }
     }
     toggle(){
         document.body.classList.toggle('open')
@@ -50,12 +85,12 @@ class appGlobal {
         this.offsetEl(this.findElActive)
     }
     onPopstate(){
-        transitionPage(window.location.pathname)
+        this.createPage(window.location.pathname)
         this.navigation()
     }
     onChange(target){
         window.history.pushState({}, '', target.getAttribute('href'))
-        transitionPage(target.getAttribute('href')) 
+       this.createPage(target.getAttribute('href')) 
         this.navigation()
     }
    clk(e) {
@@ -83,12 +118,6 @@ class appGlobal {
     }    
 }
 
-const initApp = () =>{
-    new appGlobal()
-}
-
-if(document.readyState === "complete" || document.readyState !== "loading"){
-    initApp()
-}else{
-    document.addEventListener('DOMContentLoaded', initApp)
-}
+document.addEventListener('readystatechange', () =>{
+    document.readyState === "complete" && new appGlobal()
+})

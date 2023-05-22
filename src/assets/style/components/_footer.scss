@@ -23,7 +23,7 @@
             .line-hover{
                 position: relative;
                 width: fit-content;
-                @include lineAfter(1px, 0.5s, white, 1, 0, left, right);
+                @include lineAfter(1px, 0.5s, white, 0, 1, right, left);
 
             }
         }

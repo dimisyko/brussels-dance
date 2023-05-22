@@ -1,5 +1,5 @@
-import splitWord from "../libs/splitTxt.js"
-export default class places extends splitWord{
+import page from "../libs/page.js"
+export default class places extends page {
     constructor(){
         super({
             el : app.querySelector('.artistes-page__title'),
@@ -18,17 +18,16 @@ export default class places extends splitWord{
         }
         this.child[this.init.index].classList.add('active')
         this.state = true
-        this.run = false
-        this.event()
+        this.dragable = false
     }
     drag(e){
         if (e.cancelable) e.preventDefault();
-        this.run = true
+        this.dragable = true
         this.init.posX = e.clientX || e.targetTouches[0].clientX
         this.el.style.cursor = "grab"
     }
     move(e){
-        if(!this.run) return
+        if(!this.dragable) return
         const moveX = e.clientX || e.targetTouches[0].clientX
         this.moveEl =  this.init.posX - moveX
         this.anim()
@@ -38,7 +37,7 @@ export default class places extends splitWord{
        return this.items.length - 1
     }
     dragUp(){
-        this.run = false
+        this.dragable = false
         this.el.style.cursor = "auto"
     }
     moveContainer(index, incre, nbr){
@@ -63,12 +62,16 @@ export default class places extends splitWord{
         this.init.increVW = window.innerWidth < 992 ? this.init.index * window.innerWidth : this.init.index * this.items[0].offsetWidth
         this.el.style.transform = "translate3d(-"+this.init.increVW+"px, 0, 0)"
     }
-    event(){
-        window.addEventListener('resize', this.onResize.bind(this))
+    run(){
+        this.resize = this.onResize.bind(this)
+        window.addEventListener('resize', this.resize)
         this.el.addEventListener('mousedown', this.drag.bind(this))
         this.el.addEventListener('touchstart', this.drag.bind(this), { passive : true})
         this.el.addEventListener('touchmove', this.move.bind(this), { passive : true})
         this.el.addEventListener('mousemove', this.move.bind(this), { passive : true})
         this.el.addEventListener('mouseup', this.dragUp.bind(this), { passive : true})
+    }
+    destroy(){
+        window.removeEventListener('resize', this.resize)
     }
 }

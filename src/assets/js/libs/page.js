@@ -1,4 +1,4 @@
-export default class splitWord {
+export default class page {
     constructor({el, classNameParent, classNameChild}){
         this.el = el
         this.classNameParent = classNameParent
@@ -6,6 +6,7 @@ export default class splitWord {
         this.value = this.el.textContent
         this.split = this.value.split(' ')
         this.el.textContent = ""
+        this.current = 0
         this.loop()
     }
     parentSplit(element){

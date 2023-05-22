@@ -1,8 +1,8 @@
 import { fcns } from "../utils/functions.js"
-import splitWord from "../libs/splitTxt.js"
+import page from "../libs/page.js"
 import video from "../libs/video.js"
 
-export default class home extends splitWord {
+export default class home extends page {
     constructor() {
         super({
             el : app.querySelector('.home__title'),
@@ -76,14 +76,14 @@ export default class home extends splitWord {
        this.direction = scrollY - this.init.direction
         this.init.direction = scrollY
     }
-    raf(){
+    run(){
         this.marquee = this.init.incre % this.el[0].getBoundingClientRect().width
         if(this.marquee < 0){
             this.marquee = this.marquee + this.el[0].getBoundingClientRect().width
         }
         this.moveMarquee()
         this.easing()
-        requestAnimationFrame(this.raf.bind(this))
+       this.raf = requestAnimationFrame(this.run.bind(this))
     }
     directionMarquee(speed){
         Math.sign(this.direction) == 1 ? this.init.incre+=speed : this.init.incre-=speed
@@ -93,11 +93,17 @@ export default class home extends splitWord {
         this.el[0].style.transform = this.el[1].style.transform = "translate3d("+(-this.marquee)+"px, 0, 0)"
     }
     event(){
-        this.raf()
-        window.addEventListener('scroll', this.scroll.bind(this), { passive : true})
+        this.resize = this.onResize.bind(this)
+        this.onScroll = this.scroll.bind(this)
+        window.addEventListener('scroll', this.onScroll, { passive : true})
         this.toggleVideo.forEach(el => el.addEventListener('click', el.dataset.toggle == "open" ? this.openVideo.bind(this) : this.closeVideo.bind(this)))
-        window.addEventListener('resize', this.onResize.bind(this))
+        window.addEventListener('resize', this.resize)
         this.videoWrapper.addEventListener('mousemove', this.onOver.bind(this))
         this.videoWrapper.addEventListener('mouseleave', this.onLeave.bind(this))
+    }
+    destroy(){
+        cancelAnimationFrame(this.raf)
+        window.removeEventListener('resize', this.resize)
+        window.removeEventListener('scroll', this.onScroll)
     }
 }

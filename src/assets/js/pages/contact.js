@@ -1,6 +1,6 @@
-import splitWord from "../libs/splitTxt.js"
+import page from "../libs/page.js"
 
-export default class contact extends splitWord {
+export default class contact extends page {
     constructor() {
         super({
             el: app.querySelector('.contact__title'),
@@ -18,7 +18,6 @@ export default class contact extends splitWord {
             btnPrev: this.form.querySelector('.contact__btn-previous')
         }
         this.index = 0
-        this.event()
         this.init()
     }
     get length(){
@@ -59,7 +58,7 @@ export default class contact extends splitWord {
         if (this.formChild.inputs[this.index].value.trim() == "") {
             const inputTxt = this.formChild.inputs[this.index].dataset.input
             this.message(`Veuillez introduire votre ${inputTxt}`, "red")
-        } else if (this.formChild.inputs[this.index].value.trim().length < 3) {
+        } else if (this.formChild.inputs[this.index].value.trim().length <= 3) {
             this.message("Le texte est trop court", "red")
         } else if (this.formChild.inputs[this.index].parentElement.classList.contains("form__email")) {
             !this.checkRegex(email.value) ? this.message("Ecrivez correctement votre adresse email", "red") : this.succes()
@@ -69,7 +68,7 @@ export default class contact extends splitWord {
     }
     submitForm(e) {
         e.preventDefault()
-        if (this.index == this.length.inputs && this.formChild.inputs[this.index].value.trim().length >= 5) {
+        if (this.index == this.length.inputs && this.formChild.inputs[this.index].value.trim().length >= 3) {
             this.message(`Merci ${first_name.value.charAt(0).toUpperCase() + first_name.value.substring(1)} pour votre message !`, "#ff7f01")
             this.form.style.opacity = 0
             setTimeout(() => this.form.remove(), 1500)
@@ -77,8 +76,9 @@ export default class contact extends splitWord {
             this.checkInputValue()
         }
     }
-    event() {
+    run() {
+        this.submit = this.submitForm.bind(this)
         this.formChild.btn.forEach((el) => el.addEventListener('click', () => el.dataset.btn == "next" ? this.checkInputValue() : this.navigate("prev")))
-        this.formChild.submit.addEventListener('click', this.submitForm.bind(this))
+        this.formChild.submit.addEventListener('click', this.submit)
     }
 }
