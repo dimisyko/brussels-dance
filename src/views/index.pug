@@ -1,6 +1,9 @@
--const title = "Accueil"
--
- const artistes = [
+extends ../components/layout.pug
+block variable 
+   -const title = "Accueil"
+block main 
+ -
+  const artistes = [
   {
    alt : "Ayelen Parolin",
    img : "portrait1.webp"
@@ -16,7 +19,7 @@
   }
   ]
 
- const partners = [
+  const partners = [
   {
     alt : "Ville de Bruxelles",
     img : "logo-bruxelles-ville.webp"
@@ -43,10 +46,7 @@
     img :"logo7.webp"
   }
   ]
-include ../components/head.pug
-    include ../components/nav.pug
-    main.app#app
-        .content
+ .content
           .bg-black
           section.home
            h1.home__title Brussels dance
@@ -106,4 +106,3 @@ include ../components/head.pug
                    li.partners__list
                      figure.partners__item
                        img(src=require(`../assets/img/${item.img}`), alt=item.alt)
-    include ../components/footer.pug

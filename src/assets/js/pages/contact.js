@@ -71,6 +71,7 @@ export default class contact extends page {
         if (this.index == this.length.inputs && this.formChild.inputs[this.index].value.trim().length >= 3) {
             this.message(`Merci ${first_name.value.charAt(0).toUpperCase() + first_name.value.substring(1)} pour votre message !`, "#ff7f01")
             this.form.style.opacity = 0
+            this.form.reset()
             setTimeout(() => this.form.remove(), 1500)
         } else {
             this.checkInputValue()

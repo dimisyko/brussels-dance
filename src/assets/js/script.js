@@ -12,6 +12,7 @@ import ajax from './utils/ajax.js';
 class appGlobal {
     constructor() {
         this.paths()
+        this.page.run()
         this.menu = document.querySelector('.menu__wrapper')
         this.menuChild = {
             links : [...this.menu.querySelectorAll('.menu__link')],
@@ -26,26 +27,26 @@ class appGlobal {
     }
     paths() {
         this.path = new Map()
-
+        
         this.path.set('/', home)
         this.path.set('/programme', program)
         this.path.set('/artistes', artistes)
         this.path.set('/contact', contact)
         this.page = new (this.path.get(window.location.pathname))
-        this.page.run()
     }
     async createPage(url) {
         try {
             leavePage()
             const content = app.querySelector('.content')
-            document.documentElement.style = "overflow : hidden; pointer-events : none;"
-            typeof this.page.destroy == "function" && this.page.destroy()
+            document.body.style = "overflow : hidden; pointer-events : none;"
             const response = await ajax(url)
             const dom = new DOMParser().parseFromString(response, 'text/html')
+            typeof this.page.destroy == "function" && this.page.destroy()
             enterPage(dom.querySelector('.content')).then(() => {
                 content.remove()
-                document.documentElement.removeAttribute('style')
+                document.body.removeAttribute('style')
                 window.scrollTo(0, 0)
+                this.page.run()
             })
             app.appendChild(dom.querySelector('.content'))
             document.title = dom.title

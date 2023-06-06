@@ -1,7 +1,7 @@
--const title = "Contact"
-include ../../components/head.pug
-    include ../../components/nav.pug
-    main.app#app
+extends ../../components/layout.pug
+block variable 
+    -const title = "Contact"
+block main
         .content#black
             .bg-black
             section.contact.mg-top.w-90
@@ -32,5 +32,3 @@ include ../../components/head.pug
                        .contact__message-bottom
                           p.form__error
                           button.contact__btn-submit(type="submit") Envoyer
-                     
-    include ../../components/footer.pug

@@ -1,3 +1,4 @@
+block variable
 doctype html
 html(lang="fr")
     head
@@ -18,4 +19,7 @@ html(lang="fr")
         
         title=`${title} - Brussels Dance`
     body(style="opacity: 0") 
-      block body
+      include ./nav.pug
+      main.app#app
+         block main
+      include ./footer.pug

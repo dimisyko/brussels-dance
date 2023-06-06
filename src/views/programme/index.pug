@@ -1,8 +1,8 @@
--const title = "Programme"
-include ../../components/head.pug
-    include ../../components/nav.pug
-    main.app#app
-        .content
+extends ../../components/layout.pug
+block variable 
+    -const title = "Programme"
+block main
+      .content
           .bg-black
           section.programm-page.mg-top
             h1.programm-page__title.arrow-title Programme 2022
@@ -56,4 +56,3 @@ include ../../components/head.pug
                      date : "05-03-2022"
                   }
             ]})
-    include ../../components/footer.pug

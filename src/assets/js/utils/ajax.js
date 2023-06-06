@@ -1,6 +1,7 @@
-
+const promises ={};
 export default function ajax(url) {
-	return new Promise(resolve => {
+	if(!promises[url]){
+		promises[url] = new Promise(resolve => {
 		let xml = new XMLHttpRequest()
 		xml.addEventListener('readystatechange', function () {
 			if (this.status === 200 && this.readyState === 4) {
@@ -11,4 +12,6 @@ export default function ajax(url) {
 		xml.setRequestHeader("Accept", "text/html")
 		xml.send()
 	})
+}
+	return promises[url]
 }
