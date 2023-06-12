@@ -50,6 +50,7 @@
     body{
       background-color:#ff7f01;
       overflow-y: scroll;
+      overflow-x: hidden;
       &.openVideo{
         overflow-y: hidden;
         .video{

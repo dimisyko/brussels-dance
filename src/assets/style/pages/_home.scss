@@ -12,7 +12,6 @@
 	}
 	&__wrapper-imgs {
 		@include tablet {
-			margin-top: -2.5rem;
 			display: flex;
 			justify-content: space-between;
 		}
